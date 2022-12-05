@@ -46,23 +46,13 @@ class Signature:
     ids: set[str]
 
     def __str__(self) -> str:
-        longs: list[str] = []
-        shorts: list[str] = []
-        norines: list[str] = []
-        for name in self.names:
-            sig_name = get_substrate_by_name(name)
-            longs.append(sig_name.long)
-            shorts.append(sig_name.short)
-            norines.append(sig_name.norine)
-
-        winners = list(map(lambda x: get_substrate_by_name(x).short, self.winners))
+        shorts = [get_substrate_by_name(sub).short for sub in self.names]
+        winners = [get_substrate_by_name(sub).short for sub in self.winners]
 
         return "\t".join([
             self.aa10,
             self.aa34,
-            "|".join(longs),
             "|".join(shorts),
-            "|".join(norines),
             "|".join(winners),
             "|".join(self.ids),
         ])
