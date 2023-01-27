@@ -9,8 +9,7 @@ from typing import IO, Optional
 from antismash.common.test.helpers import DummyAntismashDomain
 from antismash.config import build_config
 from antismash.modules.nrps_pks.signatures import get_a_dom_signatures
-
-from name_mappings import get_substrate_by_name
+from antismash.modules.nrps_pks.name_mappings import get_substrate_by_name
 
 
 def main() -> None:
