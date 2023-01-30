@@ -106,12 +106,17 @@ def pick_winning_substrates(aa34: str, temp_sigs: list[TempSignature]) -> Signat
         winning_sigs.extend(options[key])
 
     names: set[str] = set()
+    winners: set[str] = set()
     ids: set[str] = set()
     aa10 = temp_sigs[0].aa10
     for sig in winning_sigs:
         names.add(sig.name)
+        winners.add(sig.name)
         ids.update(sig.ids)
-    return Signature(aa10, aa34, names, names, ids)
+    for sig in temp_sigs:
+        names.add(sig.name)
+        ids.update(sig.ids)
+    return Signature(aa10, aa34, names, winners, ids)
 
 
 @dataclass
